@@ -1,8 +1,24 @@
-﻿
+﻿@using MVCProje.Models.Entity
+@model List<Categories>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
-<h2>Burası Kategorilerin Listeleneceği Sayfa Olacak</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>KATEGORİ ID</th>
+        <th>KATEGORİ ADI</th>
+    </tr>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th>@item.CategoryId</th>
+                <td>@item.CategoryName</td>
+            </tr>
+        }
+    </tbody>
+</table>
 
