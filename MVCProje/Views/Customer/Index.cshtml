@@ -1,0 +1,26 @@
+﻿@using MVCProje.Models.Entity
+@model List<Customers>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>MÜŞTERİ ID</th>
+        <th>MÜŞTERİ ADI</th>
+        <th>MÜŞTERİ SOYADI</th>
+        <th>E-MAİL</th>
+    </tr>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th>@item.CustomerId</th>
+                <td>@item.CustomerName</td>
+                <td>@item.CustomerSurname</td>
+                <td>@item.CustomerEmail</td>
+            </tr>
+        }
+    </tbody>
+</table>
