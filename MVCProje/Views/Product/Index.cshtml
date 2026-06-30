@@ -16,6 +16,7 @@
         <th>KATEGORİ</th>
         <th>ÜRÜN FİYATI</th>
         <th>STOK</th>
+        <th>AÇIKLAMA</th>
         <th></th>
         <th></th>
     </tr>
@@ -28,8 +29,9 @@
                 <td>@item.Categories.CategoryName</td>
                 <td>@item.ProductPrice</td>
                 <td>@item.ProductStock</td>
+                <td>@item.ProductDescription</td>
                 <td><a href="/Product/DeleteProduct/@item.ProductId" class="btn btn-danger">Sil</a></td>
-                <td><a href="/Product/UpdateProduct/@item.ProductId" class="btn btn-success">Güncelle</a></td>
+                <td><a href="/Product/GetProduct/@item.ProductId" class="btn btn-success">Güncelle</a></td>
             </tr>
         }
     </tbody>

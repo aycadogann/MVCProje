@@ -26,6 +26,10 @@ namespace MVCProje.Controllers
         [HttpPost]
         public ActionResult AddCustomer(Customers customer)
         {
+            if (!ModelState.IsValid)
+            {
+                return View("AddCustomer");
+            }
             customer.CustomerIsActive = 1;
             customer.CustomerCreatedDate = DateTime.Now;
             db.Customers.Add(customer);

@@ -1,4 +1,4 @@
-﻿
+﻿@model MVCProje.Models.Entity.Customers
 @{
     ViewBag.Title = "AddCustomer";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
@@ -7,7 +7,9 @@
 <form class="form-group" method="post">
     <div>
         <label>Müşteri Adı</label>
-        <input type="text" class="form-control" name="CustomerName" />
+        @Html.TextBoxFor(c=>c.CustomerName,new {@class="form-control" })
+        @Html.ValidationMessageFor(c=>c.CustomerName,"",new {@style="color:red"})
+        @*<input type="text" class="form-control" name="CustomerName" />*@
     </div>
     <div style="margin-top:15px">
         <label>Müşteri Soyadı</label>

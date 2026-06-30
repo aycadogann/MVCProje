@@ -49,5 +49,35 @@ namespace MVCProje.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        public ActionResult GetProduct(int id)
+        {
+            var product = db.Products.Find(id);
+            List<SelectListItem> values = (from i in db.Categories.ToList()
+                                           select new SelectListItem
+                                           {
+                                               Text = i.CategoryName,
+                                               Value = i.CategoryId.ToString()
+                                           }).ToList();
+            ViewBag.categories = values;
+            return View("GetProduct", product);
+        }
+
+        public ActionResult UpdateProduct(Products product)
+        {
+            var _product=db.Products.Find(product.ProductId);
+            _product.ProductName = product.ProductName;
+
+            var category = db.Categories.Where(c => c.CategoryId == product.Categories.CategoryId).FirstOrDefault();
+            _product.Categories = category;
+
+            _product.ProductPrice = product.ProductPrice;
+            _product.ProductStock = product.ProductStock;
+            _product.ProductDescription = product.ProductDescription;
+            _product.ProductCreatedDate = DateTime.Now;
+            _product.ProductIsActive = true;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }
