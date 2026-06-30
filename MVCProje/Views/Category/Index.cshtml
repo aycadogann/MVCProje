@@ -5,11 +5,15 @@
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
+<br />
+<a href="/Category/AddCategory/" class="btn btn-primary" style="width:300px">YENİ KATEGORİ EKLE</a>
 
-<table class="table table-bordered">
+<table class="table table-bordered" style="margin-top:15px">
     <tr>
         <th>KATEGORİ ID</th>
         <th>KATEGORİ ADI</th>
+        <th></th>
+        <th></th>
     </tr>
     <tbody>
         @foreach (var item in Model)
@@ -17,6 +21,8 @@
             <tr>
                 <th>@item.CategoryId</th>
                 <td>@item.CategoryName</td>
+                <td><a href="/Category/Delete/@item.CategoryId" class="btn btn-danger">Sil</a></td>
+                <td><a href="/Category/Update/@item.CategoryId" class="btn btn-success">Güncelle</a></td>
             </tr>
         }
     </tbody>

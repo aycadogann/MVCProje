@@ -16,5 +16,30 @@ namespace MVCProje.Controllers
             var values = db.Products.ToList();
             return View(values);
         }
+
+        [HttpGet]
+        public ActionResult AddProduct()
+        {
+            List<SelectListItem> values = (from i in db.Categories.ToList()
+                                           select new SelectListItem
+                                           {
+                                               Text = i.CategoryName,
+                                               Value = i.CategoryId.ToString()
+                                           }).ToList();
+            ViewBag.categories = values;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddProduct(Products product)
+        {
+            var category = db.Categories.Where(c => c.CategoryId == product.Categories.CategoryId).FirstOrDefault();
+            product.Categories = category;
+            product.ProductCreatedDate = DateTime.Now;
+            product.ProductIsActive = true;
+            db.Products.Add(product);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }

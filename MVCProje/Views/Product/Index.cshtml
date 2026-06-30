@@ -5,13 +5,19 @@
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
-<table class="table table-bordered">
+<br />  
+<a href="/Product/AddProduct/" class="btn btn-primary" style="width:300px">YENİ ÜRÜN EKLE</a>
+
+
+<table class="table table-bordered" style="margin-top:15px">
     <tr>
         <th>ÜRÜN ID</th>
         <th>ÜRÜN ADI</th>
         <th>KATEGORİ</th>
         <th>ÜRÜN FİYATI</th>
         <th>STOK</th>
+        <th></th>
+        <th></th>
     </tr>
     <tbody>
         @foreach (var item in Model)
@@ -22,6 +28,8 @@
                 <td>@item.Categories.CategoryName</td>
                 <td>@item.ProductPrice</td>
                 <td>@item.ProductStock</td>
+                <td><a href="/Product/Delete/@item.ProductId" class="btn btn-danger">Sil</a></td>
+                <td><a href="/Product/Update/@item.ProductId" class="btn btn-success">Güncelle</a></td>
             </tr>
         }
     </tbody>

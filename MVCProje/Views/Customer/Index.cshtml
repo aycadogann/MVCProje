@@ -5,12 +5,17 @@
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
-<table class="table table-bordered">
+<br />  
+<a href="/Customer/AddCustomer/" class="btn btn-primary" style="width:300px">YENİ MÜŞTERİ EKLE</a>
+
+<table class="table table-bordered" style="margin-top:15px">
     <tr>
         <th>MÜŞTERİ ID</th>
         <th>MÜŞTERİ ADI</th>
         <th>MÜŞTERİ SOYADI</th>
         <th>E-MAİL</th>
+        <th></th>
+        <th></th>
     </tr>
     <tbody>
         @foreach (var item in Model)
@@ -20,6 +25,8 @@
                 <td>@item.CustomerName</td>
                 <td>@item.CustomerSurname</td>
                 <td>@item.CustomerEmail</td>
+                <td><a href="/Customer/Delete/@item.CustomerId" class="btn btn-danger">Sil</a></td>
+                <td><a href="/Customer/Update/@item.CustomerId" class="btn btn-success">Güncelle</a></td>
             </tr>
         }
     </tbody>
