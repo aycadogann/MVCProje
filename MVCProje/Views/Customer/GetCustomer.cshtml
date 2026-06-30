@@ -1,0 +1,42 @@
+﻿@model MVCProje.Models.Entity.Customers
+@{
+    ViewBag.Title = "GetCustomer";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@using (Html.BeginForm("UpdateCustomer", "Customer", FormMethod.Post))
+{
+<div class="form-group">
+    @Html.LabelFor(c => c.CustomerId)
+    @Html.TextBoxFor(c => c.CustomerId, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(c => c.CustomerName)
+    @Html.TextBoxFor(c => c.CustomerName, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(c => c.CustomerSurname)
+    @Html.TextBoxFor(c => c.CustomerSurname, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(c => c.CustomerEmail)
+    @Html.TextBoxFor(c => c.CustomerEmail, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(c => c.CustomerDistrict)
+    @Html.TextBoxFor(c => c.CustomerDistrict, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(c => c.CustomerCity)
+    @Html.TextBoxFor(c => c.CustomerCity, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(c => c.CustomerCountry)
+    @Html.TextBoxFor(c => c.CustomerCountry, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(c => c.CustomerGender)
+    @Html.TextBoxFor(c => c.CustomerGender, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(c => c.CustomerBalance)
+    @Html.TextBoxFor(c => c.CustomerBalance, new { @class = "form-control" })
+    <br />
+</div>
+<div>
+    <button class="btn btn-success">Güncelle</button>
+</div>
+}
+

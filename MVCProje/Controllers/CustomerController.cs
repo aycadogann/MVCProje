@@ -13,7 +13,7 @@ namespace MVCProje.Controllers
         ShopBaseDbEntities db = new ShopBaseDbEntities();
         public ActionResult Index()
         {
-            var values = db.Customers.OrderByDescending(x=>x.CustomerId).ToList();
+            var values = db.Customers.OrderByDescending(x => x.CustomerId).ToList();
             return View(values);
         }
 
@@ -37,6 +37,29 @@ namespace MVCProje.Controllers
         {
             var customer = db.Customers.Find(id);
             db.Customers.Remove(customer);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult GetCustomer(int id)
+        {
+            var customer = db.Customers.Find(id);
+            return View("GetCustomer", customer);
+        }
+
+        public ActionResult UpdateCustomer(Customers customer)
+        {
+            var _customer = db.Customers.Find(customer.CustomerId);
+            _customer.CustomerName = customer.CustomerName;
+            _customer.CustomerSurname = customer.CustomerSurname;
+            _customer.CustomerEmail = customer.CustomerEmail;
+            _customer.CustomerDistrict = customer.CustomerDistrict;
+            _customer.CustomerCity = customer.CustomerCity;
+            _customer.CustomerCountry = customer.CustomerCountry;
+            _customer.CustomerGender = customer.CustomerGender;
+            _customer.CustomerBalance = customer.CustomerBalance;
+            _customer.CustomerCreatedDate = DateTime.Now;
+            _customer.CustomerIsActive = 1;
             db.SaveChanges();
             return RedirectToAction("Index");
         }
