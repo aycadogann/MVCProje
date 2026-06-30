@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MVCProje.Models.Entity;
+using PagedList;
+using PagedList.Mvc;
 
 namespace MVCProje.Controllers
 {
@@ -11,9 +13,10 @@ namespace MVCProje.Controllers
     {
         // GET: Product
         ShopBaseDbEntities db = new ShopBaseDbEntities();
-        public ActionResult Index()
+        public ActionResult Index(int page=1)
         {
-            var values = db.Products.ToList();
+            //var values = db.Products.ToList();
+            var values = db.Products.ToList().ToPagedList(page,10);
             return View(values);
         }
 
