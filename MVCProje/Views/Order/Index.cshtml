@@ -1,4 +1,4 @@
-﻿
+﻿@model MVCProje.Models.Entity.Orders
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
@@ -6,27 +6,30 @@
 
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal1">Satış Yap</button>
 
+
 <div class="modal" id="Modal1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h2 class="modal-title">Satış Yapma Ekranı</h2>
             </div>
-            <form>
+            <form method="post" action="/Order/AddOrder">
                 <div class="modal-body">
-                    <label>Ürün Adı</label>
-                    <input type="text" class="form-control" name="Product" />
+                    <label>Müşteri ID</label>
+                    @Html.TextBoxFor(o => o.CustomerId, new { @class = "form-control" })
                     <br />
-                    <label>Ürün Fiyat</label>
-                    <input type="text" class="=form-control" name="ProductPrice" />
+                    <label>Ürün ID</label>
+                    @Html.TextBoxFor(o => o.ProductId, new { @class = "form-control" })
                     <br />
-                    <label>Müşteri Adı</label>
-                    <input type="text" class="=form-control" name="CustomerName" />
+                    <label>Adet</label>
+                    @Html.TextBoxFor(o => o.Quantity, new { @class = "form-control" })
                     <br />
-                    <label>E-mail</label>
-                    <input type="text" class="=form-control" name="CustomerEmail" />
+                    <label>Ödeme Yöntemi</label>
+                    @Html.TextBoxFor(o => o.PaymentMethod, new { @class = "form-control" })
                     <br />
-                    <button class="btn btn-primary">Verileri Kaydet</button>
+
+                    <button type="submit" class="btn btn-primary">Satış İşlemini Yap</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Vazgeç</button>
                 </div>
             </form>
         </div>

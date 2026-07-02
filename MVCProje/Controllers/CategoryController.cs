@@ -16,7 +16,7 @@ namespace MVCProje.Controllers
         public ActionResult Index(int page=1)
         {
             //var values = db.Categories.ToList();
-            var values = db.Categories.ToList().ToPagedList(page, 10);
+            var values = db.Categories.Where(c=>c.IsDeleted==false).ToList().ToPagedList(page, 7);
             return View(values);
         }
         [HttpGet]
@@ -40,7 +40,10 @@ namespace MVCProje.Controllers
         public ActionResult DeleteCategory(int id)
         {
             var categroy = db.Categories.Find(id);
-            db.Categories.Remove(categroy);
+            if (categroy!=null)
+            {
+                categroy.IsDeleted = true;
+            }
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -4,13 +4,14 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ShopBaseDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ShopBaseDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Categories">
           <Key>
             <PropertyRef Name="CategoryId" />
           </Key>
           <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CategoryName" Type="nvarchar" MaxLength="30" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'ShopBaseDb.dbo.CategoryCount' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -42,6 +43,7 @@ warning 6013: The table/view 'ShopBaseDb.dbo.CategoryLog' does not have a primar
           <Property Name="CustomerBalance" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="CustomerCreatedDate" Type="date" Nullable="false" />
           <Property Name="CustomerIsActive" Type="tinyint" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Orders">
           <Key>
@@ -67,6 +69,7 @@ warning 6013: The table/view 'ShopBaseDb.dbo.CategoryLog' does not have a primar
           <Property Name="ProductCreatedDate" Type="date" Nullable="false" />
           <Property Name="ProductIsActive" Type="bit" Nullable="false" />
           <Property Name="CategoryId" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -138,8 +141,7 @@ warning 6013: The table/view 'ShopBaseDb.dbo.CategoryLog' does not have a primar
             <End Role="Products" EntitySet="Products" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ShopBaseDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -150,6 +152,7 @@ warning 6013: The table/view 'ShopBaseDb.dbo.CategoryLog' does not have a primar
           <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CategoryName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Products" Relationship="Self.FK_Products_Categories" FromRole="Categories" ToRole="Products" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Customers">
           <Key>
@@ -167,6 +170,7 @@ warning 6013: The table/view 'ShopBaseDb.dbo.CategoryLog' does not have a primar
           <Property Name="CustomerCreatedDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="CustomerIsActive" Type="Byte" Nullable="false" />
           <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Customers" FromRole="Customers" ToRole="Orders" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Orders">
           <Key>
@@ -196,6 +200,7 @@ warning 6013: The table/view 'ShopBaseDb.dbo.CategoryLog' does not have a primar
           <Property Name="CategoryId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Categories" Relationship="Self.FK_Products_Categories" FromRole="Products" ToRole="Categories" />
           <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Products" FromRole="Products" ToRole="Orders" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -278,6 +283,7 @@ warning 6013: The table/view 'ShopBaseDb.dbo.CategoryLog' does not have a primar
           <EntitySetMapping Name="Categories">
             <EntityTypeMapping TypeName="ShopBaseDbModel.Categories">
               <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
               </MappingFragment>
@@ -286,6 +292,7 @@ warning 6013: The table/view 'ShopBaseDb.dbo.CategoryLog' does not have a primar
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="ShopBaseDbModel.Customers">
               <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
                 <ScalarProperty Name="CustomerSurname" ColumnName="CustomerSurname" />
@@ -316,6 +323,7 @@ warning 6013: The table/view 'ShopBaseDb.dbo.CategoryLog' does not have a primar
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="ShopBaseDbModel.Products">
               <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
                 <ScalarProperty Name="ProductName" ColumnName="ProductName" />
                 <ScalarProperty Name="ProductPrice" ColumnName="ProductPrice" />

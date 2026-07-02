@@ -7,6 +7,15 @@
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
+@*@using (Html.BeginForm("Index", "Customer", FormMethod.Get))
+{
+    <p>
+        <b>Aranacak Müşteri Adı:>/b> @Html.TextBox("search")
+        <input type="submit" value="Ara" />
+    </p>
+}*@
+
+
 <br />
 <a href="/Customer/AddCustomer/" class="btn btn-primary" style="width:300px">YENİ MÜŞTERİ EKLE</a>
 
@@ -30,7 +39,7 @@
                 <td>@item.CustomerEmail</td>
                 <td><a href="/Customer/DeleteCustomer/@item.CustomerId" class="btn btn-danger">Sil</a></td>
                 <td><a href="/Customer/GetCustomer/@item.CustomerId" class="btn btn-success">Güncelle</a></td>
-                <td>@Html.ActionLink("Sil Butonu", "DeleteCustomer", new { id=item.CustomerId }, new { @class = "btn btn-warning", onclick = "return confirm('Gerçekten Silmek İstiyor musunuz?')" })</td>
+                <td>@Html.ActionLink("Sil...", "DeleteCustomer", new { id = item.CustomerId }, new { @class = "btn btn-warning", onclick = "return confirm('Gerçekten Silmek İstiyor musunuz?')" })</td>
             </tr>
         }
     </tbody>

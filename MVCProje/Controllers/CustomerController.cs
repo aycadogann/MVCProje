@@ -13,12 +13,17 @@ namespace MVCProje.Controllers
     {
         // GET: Customer
         ShopBaseDbEntities db = new ShopBaseDbEntities();
-        public ActionResult Index(int page=1)
+
+        
+
+        public ActionResult Index(int page = 1)
         {
             //var values = db.Customers.OrderByDescending(x => x.CustomerId).ToList();
-            var values = db.Customers.ToList().ToPagedList(page,10);
+            var values = db.Customers.Where(c=>c.IsDeleted==false).ToList().ToPagedList(page, 7);
             return View(values);
         }
+
+
 
         [HttpGet]
         public ActionResult AddCustomer()
@@ -43,7 +48,10 @@ namespace MVCProje.Controllers
         public ActionResult DeleteCustomer(int id)
         {
             var customer = db.Customers.Find(id);
-            db.Customers.Remove(customer);
+            if (customer!=null)
+            {
+                customer.IsDeleted = true;
+            }
             db.SaveChanges();
             return RedirectToAction("Index");
         }

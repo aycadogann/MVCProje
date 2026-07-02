@@ -28,6 +28,7 @@ namespace MVCProje.Models.Entity
         public System.DateTime ProductCreatedDate { get; set; }
         public bool ProductIsActive { get; set; }
         public int CategoryId { get; set; }
+        public bool IsDeleted { get; set; }
     
         public virtual Categories Categories { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

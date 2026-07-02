@@ -11,8 +11,7 @@ namespace MVCProje.Models.Entity
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Customers
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,8 +21,6 @@ namespace MVCProje.Models.Entity
         }
     
         public int CustomerId { get; set; }
-        [Required(ErrorMessage ="Bu Alaný Boþ Býrakamazsýnýz")]
-        [StringLength(50,ErrorMessage ="En Fazla 50 Karakterlik Ýsim Girin")]
         public string CustomerName { get; set; }
         public string CustomerSurname { get; set; }
         public string CustomerEmail { get; set; }
@@ -34,6 +31,7 @@ namespace MVCProje.Models.Entity
         public decimal CustomerBalance { get; set; }
         public System.DateTime CustomerCreatedDate { get; set; }
         public byte CustomerIsActive { get; set; }
+        public bool IsDeleted { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Orders> Orders { get; set; }

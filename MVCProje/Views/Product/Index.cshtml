@@ -11,17 +11,19 @@
 <a href="/Product/AddProduct/" class="btn btn-primary" style="width:300px">YENİ ÜRÜN EKLE</a>
 
 
-<table class="table table-bordered" style="margin-top:15px">
-    <tr>
-        <th>ÜRÜN ID</th>
-        <th>ÜRÜN ADI</th>
-        <th>KATEGORİ</th>
-        <th>ÜRÜN FİYATI</th>
-        <th>STOK</th>
-        <th>AÇIKLAMA</th>
-        <th></th>
-        <th></th>
-    </tr>
+<table id="tblProduct" class="table table-bordered" style="margin-top:15px">
+    <thead>
+        <tr>
+            <th>ÜRÜN ID</th>
+            <th>ÜRÜN ADI</th>
+            <th>KATEGORİ</th>
+            <th>ÜRÜN FİYATI</th>
+            <th>STOK</th>
+            <th>AÇIKLAMA</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
     <tbody>
         @foreach (var item in Model)
         {
@@ -40,3 +42,11 @@
 </table>
 @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }))
 
+@*<link href="~/Content/DataTables/css/dataTables.bootstrap4.css" rel="stylesheet" />
+
+bu script eksik
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs-3.3.7/jq-2.2.4/jszip-3.1.3/pd"></script>
+
+<script>
+    $('tblProduct').DataTable()
+</script>*@

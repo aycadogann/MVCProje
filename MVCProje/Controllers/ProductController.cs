@@ -16,7 +16,7 @@ namespace MVCProje.Controllers
         public ActionResult Index(int page=1)
         {
             //var values = db.Products.ToList();
-            var values = db.Products.ToList().ToPagedList(page,10);
+            var values = db.Products.Where(p=>p.IsDeleted==false).ToList().ToPagedList(page,7);
             return View(values);
         }
 
@@ -48,7 +48,11 @@ namespace MVCProje.Controllers
         public ActionResult DeleteProduct(int id)
         {
             var product = db.Products.Find(id);
-            db.Products.Remove(product);
+
+            if (product!=null)
+            {
+                product.IsDeleted = true;
+            }
             db.SaveChanges();
             return RedirectToAction("Index");
         }
