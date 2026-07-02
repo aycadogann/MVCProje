@@ -14,7 +14,7 @@ namespace MVCProje.Controllers
         // GET: Customer
         ShopBaseDbEntities db = new ShopBaseDbEntities();
 
-        
+       
 
         public ActionResult Index(int page = 1)
         {
